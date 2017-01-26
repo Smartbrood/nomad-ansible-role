@@ -1,4 +1,15 @@
+data_dir         = "/var/lib/nomad"
+
+{% if nomad_mode == "server" %}
 server {
   enabled          = true
-  bootstrap_expect = 1
+  bootstrap_expect = {{ nomad_bootstrap_expect }}
 }
+{% else %}
+client {
+  enabled       = true
+  servers = ["{{ hostvars[groups['servers'][0] }}:4647"]
+}
+{% endif %}
+
+
