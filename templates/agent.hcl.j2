@@ -8,7 +8,6 @@ server {
 {% else %}
 client {
   enabled       = true
-  servers = ["{{ hostvars[groups['servers'][0] }}:4647"]
 }
 {% endif %}
 
