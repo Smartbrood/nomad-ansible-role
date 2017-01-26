@@ -1,0 +1,46 @@
+---
+# tasks file for nomad-ansible-role
+
+- name: Test Architecture
+  assert:
+    that:
+      - "ansible_architecture == 'x86_64'"
+    msg: "Architecture must be x86_64."
+
+- name: Test Distribution
+  assert:
+    that:
+      - "ansible_distribution == 'Ubuntu'"
+    msg: "Distribution must be Ubuntu."
+
+- name: Test Distribution Release
+  assert:
+    that:
+      - "ansible_distribution_release == 'xenial' or ansible_distribution_release == 'trusty'"
+    msg: "Distribution must be Ubuntu Xenial or Trusty."
+
+- name: Include Ubuntu Xenial specific tasks
+  include: xenial.yml
+  when: 
+    - ansible_distribution_release == 'xenial'
+
+- name: Include Ubuntu Trusty specific tasks
+  include: trusty.yml
+  when: 
+    - ansible_distribution_release == 'trusty'
+
+- name: Include configure.yml
+  include: configure.yml
+
+- name: start nomad
+  service:
+    name: nomad
+    state: started
+    enabled: yes
+  when: 
+    - not ansible_virtualization_type == 'docker'
+
+- name: Include tests.yml
+  include: tests.yml
+  when: 
+    - tests_enabled

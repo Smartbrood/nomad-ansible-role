@@ -1,0 +1,10 @@
+---
+
+- name: render agent.hcl.j2
+  template:
+    src: agent.hcl.j2
+    dest: /etc/nomad.d/agent.hcl
+  notify:
+    - restart nomad
+
+

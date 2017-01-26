@@ -1,0 +1,7 @@
+---
+
+- name: install nomad deb package
+  apt:
+    deb: "{{ nomad_deb_url }}"
+
+

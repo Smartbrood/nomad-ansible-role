@@ -1,0 +1,20 @@
+dependencies: []
+
+galaxy_info:
+  author: Andrey N. Petrov
+  owner: Andrey N. Petrov
+  description: Setup Nomad by HashiCorp.
+  company: Smartbrood LLC
+  license: Apache
+  min_ansible_version: 1.2
+
+  platforms:
+  - name: Ubuntu
+    versions:
+     - xenial
+     - trusty
+
+  galaxy_tags:
+  - nomad
+  - hashicorp
+  - docker

@@ -1,0 +1,17 @@
+---
+# defaults file for nomad-ansible-role
+
+tests_enabled: false
+
+#nomad_mode: server|client
+nomad_mode: "server"
+
+nomad_version: "0.5.2"
+nomad_deb: "nomad_{{ nomad_version }}_amd64.deb"
+nomad_deb_url: "https://smartbrood.com/packages/{{ nomad_deb }}"
+nomad_datacenter: "dc1"
+nomad_data: "/var/nomad"
+nomad_log_level: "INFO"
+nomad_bootstrap_expect: 1
+
+

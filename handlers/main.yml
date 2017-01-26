@@ -1,0 +1,10 @@
+---
+# handlers file for nomad-ansible-role
+
+- name: restart nomad
+  service:
+    name: nomad
+    state: restarted
+    enabled: yes
+  when: 
+    - not ansible_virtualization_type == 'docker'

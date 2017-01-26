@@ -1,0 +1,26 @@
+---
+
+- name: check if nomad package is installed
+  shell: dpkg-query -l 'nomad'
+  register: is_nomad
+  changed_when: False
+  ignore_errors: True
+
+- name: download nomad deb package
+  get_url:
+    url: "{{ nomad_deb_url }}"
+    dest: "/tmp/{{ nomad_deb }}"
+    validate_certs: no
+  when: is_nomad|failed
+
+- name: install nomad deb package
+  apt:
+    deb: "/tmp/{{ nomad_deb }}"
+  when: is_nomad|failed
+
+- name: remove nomad deb package
+  file:
+    path: "/tmp/{{ nomad_deb }}"
+    state: absent
+  when: is_nomad|failed
+
