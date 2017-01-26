@@ -1,5 +1,25 @@
 data_dir         = "/var/lib/nomad"
 
+addresses {
+  http = "0.0.0.0"
+  rpc  = "0.0.0.0"
+  serf = "0.0.0.0"
+}
+
+{% if ansible_eth1 is defined %}
+advertise {
+  http = "{{ ansible_eth1.ipv4.address }}"
+  rpc  = "{{ ansible_eth1.ipv4.address }}"
+  serf = "{{ ansible_eth1.ipv4.address }}"
+}
+{% elif ansible_eth0 is defined %}
+advertise {
+  http = "{{ ansible_eth0.ipv4.address }}"
+  rpc  = "{{ ansible_eth0.ipv4.address }}"
+  serf = "{{ ansible_eth0.ipv4.address }}"
+}
+{% endif %}
+
 {% if nomad_mode == "server" %}
 server {
   enabled          = true
