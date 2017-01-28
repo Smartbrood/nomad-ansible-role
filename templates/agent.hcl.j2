@@ -6,13 +6,19 @@ addresses {
   serf = "0.0.0.0"
 }
 
-{% if ansible_eth1 is defined %}
+{% if nomad_interface is defined %}
 advertise {
-  http = "{{ ansible_eth1.ipv4.address }}"
-  rpc  = "{{ ansible_eth1.ipv4.address }}"
-  serf = "{{ ansible_eth1.ipv4.address }}"
+  http = "{{ hostvars[inventory_hostname]['ansible_' + nomad_interface]['ipv4']['address'] }}"
+  rpc  = "{{ hostvars[inventory_hostname]['ansible_' + nomad_interface]['ipv4']['address'] }}"
+  serf = "{{ hostvars[inventory_hostname]['ansible_' + nomad_interface]['ipv4']['address'] }}"
 }
-{% elif ansible_eth0 is defined %}
+{% elif ansible_default_ipv4 is defined %}
+advertise {
+  http = "{{ ansible_default_ipv4.address }}"
+  rpc  = "{{ ansible_default_ipv4.address }}"
+  serf = "{{ ansible_default_ipv4.address }}"
+}
+{% else %}
 advertise {
   http = "{{ ansible_eth0.ipv4.address }}"
   rpc  = "{{ ansible_eth0.ipv4.address }}"
