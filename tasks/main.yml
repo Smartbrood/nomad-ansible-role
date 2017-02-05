@@ -29,6 +29,11 @@
   when: 
     - ansible_distribution_release == 'trusty'
 
+- name: Include tls.yml
+  include: tls.yml
+  when: 
+    - nomad_tls_enabled
+
 - name: Include configure.yml
   include: configure.yml
 

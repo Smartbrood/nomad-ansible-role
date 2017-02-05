@@ -31,4 +31,15 @@ client {
 }
 {% endif %}
 
+{% if nomad_tls_enabled %}
+tls {
+  http = true
+  rpc  = true
+
+  ca_file   = "/etc/pki/tls/certs/{{ nomad_ca_file }}"
+  cert_file = "/etc/pki/tls/certs/{{ nomad_cert_file }}"
+  key_file  = "/etc/pki/tls/private/{{ nomad_key_file }}"
+}
+{% endif %}
+
 

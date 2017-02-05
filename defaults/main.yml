@@ -17,4 +17,9 @@ nomad_data: "/var/nomad"
 nomad_log_level: "INFO"
 nomad_bootstrap_expect: 1
 
+nomad_tls_enabled: true
+nomad_ca_file: "ca.crt"
+nomad_cert_file: "example.org.crt"
+nomad_key_file: "example.org.key"
+
 

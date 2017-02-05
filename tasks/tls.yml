@@ -1,0 +1,37 @@
+---
+
+- name: ensure /etc/pki/tls/private exist
+  file:
+    path: /etc/pki/tls/private
+    state: directory
+    mode: 0755
+
+- name: ensure /etc/pki/tls/certs exist
+  file:
+    path: /etc/pki/tls/certs
+    state: directory
+    mode: 0755
+
+- name: copy nomad_ca_file
+  copy:
+    src: "{{ nomad_ca_file }}"
+    dest: "/etc/pki/tls/certs/{{ nomad_ca_file }}"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: copy nomad_cert_file
+  copy:
+    src: "{{ nomad_cert_file }}"
+    dest: "/etc/pki/tls/certs/{{ nomad_cert_file }}"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: copy nomad_key_file
+  copy:
+    src: "{{ nomad_key_file }}"
+    dest: "/etc/pki/tls/certs/{{ nomad_key_file }}"
+    owner: root
+    group: root
+    mode: 0600
