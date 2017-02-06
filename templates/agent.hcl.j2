@@ -40,6 +40,15 @@ tls {
   cert_file = "/etc/pki/tls/certs/{{ nomad_cert_file }}"
   key_file  = "/etc/pki/tls/private/{{ nomad_key_file }}"
 }
+
+consul {
+  address = "127.0.0.1:8443"
+  ssl = true
+
+  ca_file   = "/etc/pki/tls/certs/ca.crt"
+  cert_file = "/etc/pki/tls/certs/example.org.crt"
+  key_file  = "/etc/pki/tls/private/example.org.key"
+}
 {% endif %}
 
 
