@@ -45,8 +45,8 @@ tls {
 }
 
 consul {
-  address = "127.0.0.1:8443"
-  ssl = true
+  address = "127.0.0.1:8500"
+  ssl = false
 
   ca_file   = "/etc/pki/tls/certs/{{ nomad_ca_file }}"
   cert_file = "/etc/pki/tls/certs/{{ nomad_cert_file }}"

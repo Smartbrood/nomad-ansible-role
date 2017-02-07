@@ -22,7 +22,7 @@ nomad_ca_file: "ca.crt"
 nomad_cert_file: "example.org.crt"
 nomad_key_file: "example.org.key"
 
-nomad_verify_server_hostname: "true"
+nomad_verify_server_hostname: "false"
 
 nomad_encrypt: "9XANricyFdarVLYhO0rXQg=="
 
