@@ -35,3 +35,15 @@
     owner: root
     group: root
     mode: 0600
+
+- name: render nomad.env.j2
+  template:
+    src: nomad.env.j2
+    dest: /root/.nomad.env
+
+- name: set env variables for nomad client
+  lineinfile:
+    path: /root/.profile
+    regexp: 'nomad.env'
+    line: 'if [ -f ~/.nomad.env ]; then . ~/.nomad.env  ; fi'
+
