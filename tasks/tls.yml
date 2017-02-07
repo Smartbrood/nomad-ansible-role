@@ -31,7 +31,7 @@
 - name: copy nomad_key_file
   copy:
     src: "{{ nomad_key_file }}"
-    dest: "/etc/pki/tls/certs/{{ nomad_key_file }}"
+    dest: "/etc/pki/tls/private/{{ nomad_key_file }}"
     owner: root
     group: root
     mode: 0600
