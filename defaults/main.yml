@@ -18,9 +18,9 @@ nomad_log_level: "INFO"
 nomad_bootstrap_expect: 1
 
 nomad_tls_enabled: true
-nomad_ca_file: "ca.crt"
-nomad_cert_file: "example.org.crt"
-nomad_key_file: "example.org.key"
+nomad_ca_file: "ca.pem"
+nomad_cert_file: "nomad.pem"
+nomad_key_file: "nomad-key.pem"
 
 nomad_verify_server_hostname: "false"
 
