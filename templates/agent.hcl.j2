@@ -1,4 +1,6 @@
-data_dir         = "/var/lib/nomad"
+data_dir = "/var/lib/nomad"
+
+encrypt = "9XANricyFdarVLYhO0rXQg=="
 
 addresses {
   http = "0.0.0.0"
@@ -39,15 +41,17 @@ tls {
   ca_file   = "/etc/pki/tls/certs/{{ nomad_ca_file }}"
   cert_file = "/etc/pki/tls/certs/{{ nomad_cert_file }}"
   key_file  = "/etc/pki/tls/private/{{ nomad_key_file }}"
+
+  verify_server_hostname = {{ nomad_verify_server_hostname }}
 }
 
 consul {
   address = "127.0.0.1:8443"
   ssl = true
 
-  ca_file   = "/etc/pki/tls/certs/ca.crt"
-  cert_file = "/etc/pki/tls/certs/example.org.crt"
-  key_file  = "/etc/pki/tls/private/example.org.key"
+  ca_file   = "/etc/pki/tls/certs/{{ nomad_ca_file }}"
+  cert_file = "/etc/pki/tls/certs/{{ nomad_cert_file }}"
+  key_file  = "/etc/pki/tls/private/{{ nomad_key_file }}"
 }
 {% endif %}
 
