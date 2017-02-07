@@ -43,7 +43,7 @@
 
 - name: set env variables for nomad client
   lineinfile:
-    path: "/root/.profile"
+    dest: "/root/.profile"
     regexp: "nomad.env"
     line: "if [ -f ~/.nomad.env ]; then . ~/.nomad.env  ; fi"
 
