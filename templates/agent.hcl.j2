@@ -1,4 +1,4 @@
-data_dir         = "/var/lib/nomad"
+data_dir = "/var/lib/nomad"
 
 addresses {
   http = "0.0.0.0"
@@ -24,6 +24,7 @@ advertise {
 server {
   enabled          = true
   bootstrap_expect = {{ nomad_bootstrap_expect }}
+  encrypt = "{{ nomad_encrypt }}"
 }
 {% else %}
 client {
@@ -35,6 +36,17 @@ client {
 tls {
   http = true
   rpc  = true
+
+  ca_file   = "/etc/pki/tls/certs/{{ nomad_ca_file }}"
+  cert_file = "/etc/pki/tls/certs/{{ nomad_cert_file }}"
+  key_file  = "/etc/pki/tls/private/{{ nomad_key_file }}"
+
+  verify_server_hostname = {{ nomad_verify_server_hostname }}
+}
+
+consul {
+  address = "127.0.0.1:8500"
+  ssl = false
 
   ca_file   = "/etc/pki/tls/certs/{{ nomad_ca_file }}"
   cert_file = "/etc/pki/tls/certs/{{ nomad_cert_file }}"
