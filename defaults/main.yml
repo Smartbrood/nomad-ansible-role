@@ -9,7 +9,7 @@ nomad_mode: "server"
 #You may need setup specific interface
 #nomad_interface: "enp0s8"
 
-nomad_version: "0.5.2"
+nomad_version: "0.6.0"
 nomad_deb: "nomad_{{ nomad_version }}_amd64.deb"
 nomad_deb_url: "https://smartbrood.com/packages/{{ nomad_deb }}"
 nomad_datacenter: "dc1"
